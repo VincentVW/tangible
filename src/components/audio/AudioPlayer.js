@@ -27,7 +27,7 @@ class AudioPlayer extends Component {
         return (
           <LowPass
             player={this.player}
-            knobValue={this.props.manipulationItensity}
+            knobValue={this.props.manipulationIntensity}
           />
         );
       default:
