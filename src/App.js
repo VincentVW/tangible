@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import openSocket from 'socket.io-client';
+
 import AudioPlayer from './components/audio/AudioPlayer';
 import Slider from './components/ui/Slider';
 
@@ -43,6 +45,8 @@ class App extends Component {
     ],
   };
 
+  socket = openSocket('http://localhost:3001');
+
   setPlayerIntensity = (playerId, manipulationIntensity = 0) => {
     const players = this.state.players.map(player => {
       return player.id === playerId
@@ -54,16 +58,12 @@ class App extends Component {
   
   switchPlayer = (playerId, isPlaying = false) => {
     const players = this.state.players.map(player => {
-      return player.id === playerId ? { ...player, isPlaying } : player;
+      return player.id === playerId 
+        ? { ...player, isPlaying } 
+        : player;
     });
     this.setState({ players });
   };
-
-  // FOR TESTING PURPOSES
-  // componentDidMount() {
-  // this.setPlayerIntensity(0, 0.5);
-  // this.switchPlayer(2, true);
-  // }
 
   playAll = () => {
     const players = this.state.players.map(player => ({
@@ -72,6 +72,12 @@ class App extends Component {
     }));
     this.setState({ players });
   };
+
+  // FOR TESTING PURPOSES
+  // componentDidMount() {
+  // this.setPlayerIntensity(0, 0.5);
+  // this.switchPlayer(2, true);
+  // }
 
   render() {
     return (
