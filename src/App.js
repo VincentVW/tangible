@@ -54,6 +54,7 @@ class App extends Component {
         : player;
     });
     this.setState({ players });
+    this.socket.emit('push', { id: playerId, amp: manipulationIntensity });
   };
 
   switchPlayer = (playerId, isPlaying = false) => {
