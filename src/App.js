@@ -1,40 +1,41 @@
 import React, { Component } from 'react';
 import AudioPlayer from './components/audio/AudioPlayer';
+import Slider from './components/ui/Slider';
 
 class App extends Component {
   state = {
     players: [
       {
         id: 0,
-        manipulationItensity: 0,
+        manipulationIntensity: 0,
         manipulationType: 'lowpass',
         isPlaying: false,
         wavFile: 'bass.wav',
       },
       {
         id: 1,
-        manipulationItensity: 0,
+        manipulationIntensity: 0,
         manipulationType: 'lowpass',
         isPlaying: false,
         wavFile: 'bells.wav',
       },
       {
         id: 2,
-        manipulationItensity: 0,
+        manipulationIntensity: 0,
         manipulationType: 'lowpass',
         isPlaying: false,
         wavFile: 'highhats.wav',
       },
       {
         id: 3,
-        manipulationItensity: 0,
+        manipulationIntensity: 0,
         manipulationType: 'lowpass',
         isPlaying: false,
         wavFile: 'strings.wav',
       },
       {
         id: 4,
-        manipulationItensity: 0,
+        manipulationIntensity: 0,
         manipulationType: 'lowpass',
         isPlaying: false,
         wavFile: 'woodblock.wav',
@@ -42,10 +43,10 @@ class App extends Component {
     ]
   }
 
-  setPlayerIntensity = (playerId, intensity = 0) => {
+  setPlayerIntensity = (playerId, manipulationIntensity = 0) => {
     const players = this.state.players.map(player => {
       return (player.id === playerId)
-        ? { ...player, intensity }
+        ? { ...player, manipulationIntensity }
         : player;
     });
     this.setState({ players });
@@ -69,7 +70,12 @@ class App extends Component {
   render() {
     return (
       <div>
-        { this.state.players.map(player => <AudioPlayer key={ player.id } { ...player } />) }
+        { this.state.players.map(player => (
+          <AudioPlayer { ...player } key={ player.id } />
+        )) }
+        { this.state.players.map(player => (
+          <Slider { ...player } key={ player.id } onUpdate={ this.setPlayerIntensity } />
+        )) }
       </div>
     );
   }

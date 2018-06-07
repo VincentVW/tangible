@@ -1,0 +1,7 @@
+.slider {
+  margin: 10px 15px;
+}
+
+.slider__id, .slider__input {
+   margin-right: 15px; 
+}
