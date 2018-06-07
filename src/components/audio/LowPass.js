@@ -20,8 +20,9 @@ class LowPass extends React.Component {
   }
 
   componentDidUpdate() {
-    this.lowpass.resonance.value = this.range * this.props.knobValue;
-    this.lowpass.dampening.value = this.range * this.props.knobValue * 10000;
+    console.log(this.props.knobValue);
+    // this.lowpass.resonance.value = this.range * this.props.knobValue;
+    // this.lowpass.dampening.value = this.range * this.props.knobValue * 10000;
   }
 
   render() {
