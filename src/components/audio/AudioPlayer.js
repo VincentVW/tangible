@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Tone from 'tone';
 import LowPass from './LowPass';
 import Reverb from './Reverb';
+import Volume from "./Volume";
 
 class AudioPlayer extends Component {
   state = {};
@@ -23,24 +24,26 @@ class AudioPlayer extends Component {
   };
 
   render() {
-    switch (this.props.manipulationType) {
-      case 'lowpass':
-        return (
-          <LowPass
-            player={this.player}
-            knobValue={this.props.manipulationIntensity}
-          />
-        );
-      case 'reverb':
-        return (
-          <Reverb
-            player={this.player}
-            knobValue={this.props.manipulationIntensity}
-          />
-        )
-      default:
-        return null;
-    }
+    return <Volume player={this.player} knobValue={this.props.manipulationIntensity}/>
+
+    // switch (this.props.manipulationType) {
+    //   case 'lowpass':
+    //     return (
+    //       <LowPass
+    //         player={this.player}
+    //         knobValue={this.props.manipulationIntensity}
+    //       />
+    //     );
+    //   case 'reverb':
+    //     return (
+    //       <Reverb
+    //         player={this.player}
+    //         knobValue={this.props.manipulationIntensity}
+    //       />
+    //     )
+    //   default:
+    //     return null;
+    // }
   }
 }
 
