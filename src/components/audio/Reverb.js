@@ -18,14 +18,17 @@ class Reverb extends React.Component {
 
   componentDidUpdate(prevProps, prevState) {
     if (this.props.knobValue !== prevProps.knobValue) {
-      if (this.props.knobValue !== 0){
+      if (this.props.knobValue !== 0) {
         this.reverb.roomSize.value = this.props.knobValue;
       }
       if (this.props.knobValue !== 0 && !this.state.connected) {
         this.setState({ connected: true });
         this.props.player.connect(this.reverb);
       } else {
-        this.props.player.disconnect(this.reverb);
+        try {
+          this.props.player.disconnect(this.reverb);
+        } catch (error) {}
+
         this.setState({ connected: false });
       }
     }
