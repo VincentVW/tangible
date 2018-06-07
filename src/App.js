@@ -39,43 +39,55 @@ class App extends Component {
         manipulationType: 'lowpass',
         isPlaying: false,
         wavFile: 'woodblock.wav',
-      }
-    ]
-  }
+      },
+    ],
+  };
 
   setPlayerIntensity = (playerId, manipulationIntensity = 0) => {
     const players = this.state.players.map(player => {
-      return (player.id === playerId)
+      return player.id === playerId
         ? { ...player, manipulationIntensity }
         : player;
     });
     this.setState({ players });
-  }
-
+  };
+  
   switchPlayer = (playerId, isPlaying = false) => {
     const players = this.state.players.map(player => {
-      return (player.id === playerId)
-        ? { ...player, isPlaying }
-        : player;
+      return player.id === playerId ? { ...player, isPlaying } : player;
     });
     this.setState({ players });
-  }
+  };
 
   // FOR TESTING PURPOSES
-  // componentDidMount () {
-  //   this.setPlayerIntensity(2, 0.5);
-  //   this.switchPlayer(2, true);
+  // componentDidMount() {
+  // this.setPlayerIntensity(0, 0.5);
+  // this.switchPlayer(2, true);
   // }
+
+  playAll = () => {
+    const players = this.state.players.map(player => ({
+      ...player,
+      isPlaying: true,
+    }));
+    this.setState({ players });
+  };
 
   render() {
     return (
       <div>
-        { this.state.players.map(player => (
-          <AudioPlayer { ...player } key={ player.id } />
-        )) }
-        { this.state.players.map(player => (
-          <Slider { ...player } key={ player.id } onUpdate={ this.setPlayerIntensity } />
-        )) }
+        <button onClick={this.playAll}>play</button>
+
+        {this.state.players.map(player => (
+          <AudioPlayer {...player} key={player.id} />
+        ))}
+        {this.state.players.map(player => (
+          <Slider
+            {...player}
+            key={player.id}
+            onUpdate={this.setPlayerIntensity}
+          />
+        ))}
       </div>
     );
   }

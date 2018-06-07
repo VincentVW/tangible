@@ -10,7 +10,7 @@ function randomRange(min, max) {
 class LowPass extends React.Component {
   static propTypes = {
     player: PropTypes.any.isRequired,
-    knobValue: PropTypes.bool.isRequired,
+    knobValue: PropTypes.number.isRequired,
   };
 
   componentWillMount() {

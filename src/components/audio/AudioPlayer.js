@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Tone from 'tone';
+import LowPass from './LowPass';
 
 class AudioPlayer extends Component {
   state = {};
@@ -8,8 +9,8 @@ class AudioPlayer extends Component {
     super(props);
 
     this.player = new Tone.Player({
-      url: this.props.filename,
-      loop: false,
+      url: this.props.wavFile,
+      loop: true,
       volume: -10,
     }).toMaster();
   }
@@ -21,7 +22,17 @@ class AudioPlayer extends Component {
   };
 
   render() {
-    return null;
+    switch (this.props.manipulationType) {
+      case 'lowpass':
+        return (
+          <LowPass
+            player={this.player}
+            knobValue={this.props.manipulationItensity}
+          />
+        );
+      default:
+        return null;
+    }
   }
 }
 
