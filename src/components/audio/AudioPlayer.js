@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Tone from 'tone';
 import LowPass from './LowPass';
+import Reverb from './Reverb';
 
 class AudioPlayer extends Component {
   state = {};
@@ -30,6 +31,13 @@ class AudioPlayer extends Component {
             knobValue={this.props.manipulationIntensity}
           />
         );
+      case 'reverb':
+        return (
+          <Reverb
+            player={this.player}
+            knobValue={this.props.manipulationIntensity}
+          />
+        )
       default:
         return null;
     }

@@ -38,7 +38,7 @@ class App extends Component {
       {
         id: 4,
         manipulationIntensity: 0,
-        manipulationType: 'lowpass',
+        manipulationType: 'reverb',
         isPlaying: false,
         wavFile: 'woodblock.wav',
       },

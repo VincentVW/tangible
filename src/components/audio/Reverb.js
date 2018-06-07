@@ -5,19 +5,26 @@ import PropTypes from 'prop-types';
 class Reverb extends React.Component {
   static propTypes = {
     player: PropTypes.any.isRequired,
-    reverbOn: PropTypes.bool.isRequired,
+    knobValue: PropTypes.number.isRequired,
+  };
+
+  state = {
+    connected: false,
   };
 
   componentWillMount() {
-    this.reverb = new Tone.JCReverb(0.2).toMaster();
+    this.reverb = new Tone.JCReverb(0).toMaster();
   }
 
-  componentDidUpdate(prevProps) {
-    if (this.props.reverbOn !== prevProps.reverbOn) {
-      if (this.props.reverbOn) {
+  componentDidUpdate(prevProps, prevState) {
+    if (this.props.knobValue !== prevProps.knobValue) {
+      this.reverb.roomSize.value = this.props.knobValue;
+      if (this.props.knobValue !== 0 && !this.state.connected) {
+        this.setState({ connected: true });
         this.props.player.connect(this.reverb);
       } else {
         this.props.player.disconnect(this.reverb);
+        this.setState({ connected: false });
       }
     }
   }
