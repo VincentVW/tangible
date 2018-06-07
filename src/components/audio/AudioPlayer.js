@@ -24,26 +24,33 @@ class AudioPlayer extends Component {
   };
 
   render() {
-    return <Volume player={this.player} knobValue={this.props.manipulationIntensity}/>
+    // return <Volume player={this.player} knobValue={this.props.manipulationIntensity}/>
 
-    // switch (this.props.manipulationType) {
-    //   case 'lowpass':
-    //     return (
-    //       <LowPass
-    //         player={this.player}
-    //         knobValue={this.props.manipulationIntensity}
-    //       />
-    //     );
-    //   case 'reverb':
-    //     return (
-    //       <Reverb
-    //         player={this.player}
-    //         knobValue={this.props.manipulationIntensity}
-    //       />
-    //     )
-    //   default:
-    //     return null;
-    // }
+    switch (this.props.manipulationType) {
+      case 'lowpass':
+        return (
+          <LowPass
+            player={this.player}
+            knobValue={this.props.manipulationIntensity}
+          />
+        );
+      case 'reverb':
+        return (
+          <Reverb
+            player={this.player}
+            knobValue={this.props.manipulationIntensity}
+          />
+        )
+      case 'volume':
+        return (
+          <Volume
+            player={this.player}
+            knobValue={this.props.manipulationIntensity}
+          />
+        )
+      default:
+        return null;
+    }
   }
 }
 
