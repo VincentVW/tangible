@@ -15,21 +15,21 @@ class App extends Component {
       {
         id: 1,
         manipulationIntensity: 0,
-        manipulationType: 'lowpass',
+        manipulationType: 'highpass',
         isPlaying: false,
         wavFile: 'bells.wav',
       },
       {
         id: 2,
         manipulationIntensity: 0,
-        manipulationType: 'lowpass',
+        manipulationType: 'highpass',
         isPlaying: false,
         wavFile: 'highhats.wav',
       },
       {
         id: 3,
         manipulationIntensity: 0,
-        manipulationType: 'lowpass',
+        manipulationType: 'highpass',
         isPlaying: false,
         wavFile: 'strings.wav',
       },
@@ -51,7 +51,7 @@ class App extends Component {
     });
     this.setState({ players });
   };
-  
+
   switchPlayer = (playerId, isPlaying = false) => {
     const players = this.state.players.map(player => {
       return player.id === playerId ? { ...player, isPlaying } : player;
